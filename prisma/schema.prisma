@@ -12,7 +12,7 @@ datasource db {
 
 model AcademicSemester {
   id         String    @id @default(uuid())
-  year       String
+  year       Int
   title      String
   code       String
   startMonth String
@@ -57,7 +57,7 @@ model Student {
   middlename   String
   profileImage String
   email        String
-  contactNO    Int
+  contactNO    String
   gender       String
   bloodGorup   String
   createdAt    DateTime @default(now())
@@ -83,7 +83,7 @@ model Faculty {
   middlename   String
   profileImage String
   email        String
-  contactNO    Int
+  contactNO    String
   gender       String
   bloodGorup   String
   designation  String
