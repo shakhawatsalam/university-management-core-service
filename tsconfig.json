@@ -1,7 +1,7 @@
 {
   "include": [
     "src",
-    "src/app/modules/academicFaculty/academicFaculty.constant.ts",
+    "src/app/modules/academicFaculty/academicFaculty.constants.ts",
     "logs/permission",
     "logs/userPermission"
   ], // which files to compile
