@@ -54,12 +54,12 @@ model Student {
   studentId    String
   firstName    String
   lastName     String
-  middlename   String
+  middleName   String
   profileImage String
   email        String
-  contactNO    String
+  contactNo    String
   gender       String
-  bloodGorup   String
+  bloodGroup   String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
