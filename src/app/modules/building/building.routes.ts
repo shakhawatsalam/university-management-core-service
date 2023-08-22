@@ -7,11 +7,23 @@ import { BuildingValidations } from './building.validation';
 const router = express.Router();
 
 router.get('/', BuildingController.getAllFromDb);
+router.get('/:id', BuildingController.getByIdFromDB);
 router.post(
   '/',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   validateRequest(BuildingValidations.create),
   BuildingController.insertInToDb
+);
+router.patch(
+  '/:id',
+  validateRequest(BuildingValidations.update),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  BuildingController.updateOneInDB
+);
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  BuildingController.deleteByIdFromDB
 );
 
 export const buildingRoutes = router;

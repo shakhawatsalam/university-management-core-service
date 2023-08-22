@@ -2,7 +2,7 @@ export type ICourseCreateData = {
   title: string;
   code: string;
   credits: number;
-  preRequisiteCourses: {
+  preRequisiteCourses?: {
     corseId: string;
   }[];
 };
