@@ -99,6 +99,16 @@
             "date": 1692666681359,
             "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-22-08-07-success.log",
             "hash": "74ed50fe1d90e47762d56a380623c7742db0bbed033c49e5cc20a9bd8291ea13"
+        },
+        {
+            "date": 1692671155982,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-22-08-08-success.log",
+            "hash": "121cb2b15945ca8f60090c4b86e5ae8220214bab6127ee0766338deb818557be"
+        },
+        {
+            "date": 1692673973078,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-22-08-09-success.log",
+            "hash": "ec879d1ff0ba7247643e9bcb989879322bb76f2e8e6516ae1528bf06262ad1b4"
         }
     ],
     "hashType": "sha256"
