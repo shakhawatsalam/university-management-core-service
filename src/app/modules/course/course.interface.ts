@@ -6,3 +6,7 @@ export type ICourseCreateData = {
     corseId: string;
   }[];
 };
+
+export type ICourseFilterRequest = {
+  searchTerm?: string | undefined;
+};
