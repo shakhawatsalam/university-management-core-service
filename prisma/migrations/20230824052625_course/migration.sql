@@ -13,13 +13,13 @@ CREATE TABLE "courses" (
 -- CreateTable
 CREATE TABLE "CourseToPrerequisite" (
     "courseId" TEXT NOT NULL,
-    "prerequisitId" TEXT NOT NULL,
+    "preRequisiteId" TEXT NOT NULL,
 
-    CONSTRAINT "CourseToPrerequisite_pkey" PRIMARY KEY ("courseId","prerequisitId")
+    CONSTRAINT "CourseToPrerequisite_pkey" PRIMARY KEY ("courseId","preRequisiteId")
 );
 
 -- AddForeignKey
 ALTER TABLE "CourseToPrerequisite" ADD CONSTRAINT "CourseToPrerequisite_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "courses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CourseToPrerequisite" ADD CONSTRAINT "CourseToPrerequisite_prerequisitId_fkey" FOREIGN KEY ("prerequisitId") REFERENCES "courses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "CourseToPrerequisite" ADD CONSTRAINT "CourseToPrerequisite_preRequisiteId_fkey" FOREIGN KEY ("preRequisiteId") REFERENCES "courses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

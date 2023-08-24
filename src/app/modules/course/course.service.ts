@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Course, Prisma } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
@@ -8,27 +9,28 @@ import prisma from '../../../shared/prisma';
 import { courseSearchableFields } from './course.constant';
 import { ICourseCreateData, ICourseFilterRequest } from './course.interface';
 
-const insertIntoDB = async (
-  data: ICourseCreateData
-): Promise<ICourseCreateData | null> => {
+const insertIntoDB = async (data: ICourseCreateData) => {
   const { preRequisiteCourses, ...courseData } = data;
+
   const newCourse = await prisma.$transaction(async transactionClient => {
     const result = await transactionClient.course.create({
       data: courseData,
     });
+
     if (!result) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create');
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create course');
     }
+
     if (preRequisiteCourses && preRequisiteCourses.length > 0) {
       for (let index = 0; index < preRequisiteCourses.length; index++) {
-        const createPrereqisite =
+        const createPrerequisite =
           await transactionClient.courseToPrerequisite.create({
             data: {
               courseId: result.id,
-              prerequisitId: preRequisiteCourses[index].corseId,
+              preRequisiteId: preRequisiteCourses[index].courseId,
             },
           });
-        console.log(createPrereqisite);
+        console.log(createPrerequisite);
       }
     }
     return result;
@@ -40,21 +42,21 @@ const insertIntoDB = async (
         id: newCourse.id,
       },
       include: {
-        prerequisite: {
+        preRequisite: {
           include: {
-            preRequisit: true,
+            preRequisite: true,
           },
         },
-        prerequisiteFor: {
+        preRequisiteFor: {
           include: {
-            preRequisit: true,
+            course: true,
           },
         },
       },
     });
     return responseData;
   }
-  throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create');
+  throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create course');
 };
 
 const getAllFromDB = async (
@@ -92,14 +94,14 @@ const getAllFromDB = async (
 
   const result = await prisma.course.findMany({
     include: {
-      prerequisite: {
+      preRequisite: {
         include: {
-          preRequisit: true,
+          preRequisite: true,
         },
       },
-      prerequisiteFor: {
+      preRequisiteFor: {
         include: {
-          preRequisit: true,
+          preRequisite: true,
         },
       },
     },
@@ -133,14 +135,14 @@ const getByIdFromDB = async (id: string): Promise<Course | null> => {
       id,
     },
     include: {
-      prerequisite: {
+      preRequisite: {
         include: {
-          preRequisit: true,
+          preRequisite: true,
         },
       },
-      prerequisiteFor: {
+      preRequisiteFor: {
         include: {
-          preRequisit: true,
+          preRequisite: true,
         },
       },
     },
@@ -156,7 +158,7 @@ const deleteByIdFromDB = async (id: string): Promise<Course> => {
           courseId: id,
         },
         {
-          prerequisitId: id,
+          preRequisiteId: id,
         },
       ],
     },

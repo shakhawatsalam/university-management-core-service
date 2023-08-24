@@ -11,13 +11,15 @@ const create = z.object({
     credits: z.number({
       required_error: 'Credits is Required',
     }),
-    preRequisiteCourses: z.array(
-      z
-        .object({
-          courseId: z.string({}),
-        })
-        .optional()
-    ),
+    preRequisiteCourses: z
+      .array(
+        z
+          .object({
+            courseId: z.string({}),
+          })
+          .optional()
+      )
+      .optional(),
   }),
 });
 
