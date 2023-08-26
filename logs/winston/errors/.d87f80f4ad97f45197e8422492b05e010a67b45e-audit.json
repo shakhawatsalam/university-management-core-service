@@ -164,6 +164,11 @@
             "date": 1693027500903,
             "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-26-08-11-error.log",
             "hash": "9ec5b8448e21a5342525904d697a246dfa093e4afcf26cf47d9e2952bd84ecc6"
+        },
+        {
+            "date": 1693032179580,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-26-08-12-error.log",
+            "hash": "fa37ac0e8b19aead488ca1c82983681ae2127db8cf72c1d67dabee71da58df18"
         }
     ],
     "hashType": "sha256"
