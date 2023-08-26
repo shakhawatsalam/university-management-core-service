@@ -2,16 +2,18 @@ import { z } from 'zod';
 
 const create = z.object({
   body: z.object({
-    facultyId: z.string({
-      required_error: 'Faculty id is required',
-    }),
+    facultyId: z
+      .string({
+        required_error: 'Faculty id is required',
+      })
+      .optional(),
     firstName: z.string({
       required_error: 'First name is required',
     }),
     lastName: z.string({
       required_error: 'Last name is required',
     }),
-    middleName: z.string({
+    middlename: z.string({
       required_error: 'Middle name is required',
     }),
     profileImage: z.string({
@@ -20,13 +22,13 @@ const create = z.object({
     email: z.string({
       required_error: 'Email is required',
     }),
-    contactNo: z.string({
+    contactNO: z.string({
       required_error: 'Contact no is required',
     }),
     gender: z.string({
       required_error: 'Gender is required',
     }),
-    bloodGroup: z.string({
+    bloodGorup: z.string({
       required_error: 'Blood group is required',
     }),
     designation: z.string({

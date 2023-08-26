@@ -15,17 +15,20 @@ router.post(
   CourseController.insertIntoDB
 );
 
-/// I intend to explore the update course functionalities in the upcoming module.
-//   router.patch(
-//     '/:id',
-//     validateRequest(CourseValidation.update),
-//     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//     CourseController.updateOneInDB
-//   );
+// / I intend to explore the update course functionalities in the upcoming module.
+router.patch(
+  '/:id',
+  validateRequest(CourseValidation.update),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  CourseController.updateOneInDB
+);
 router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   CourseController.deleteByIdFromDB
 );
+
+router.post('/:id/assign-faculties', CourseController.assignFaculty);
+router.delete('/:id/remove-faculties', CourseController.removeFaculty);
 
 export const courseRoutes = router;
