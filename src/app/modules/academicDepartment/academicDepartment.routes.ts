@@ -2,6 +2,8 @@ import express from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import { AcademicDepartmentController } from './academicDepartment.controller';
 import { AcademicDepartmentValidation } from './acedemicDepartment.validation';
+import auth from '../../middlewares/auth';
+import { ENUM_USER_ROLE } from '../../../enums/user';
 
 const router = express.Router();
 router.get('/', AcademicDepartmentController.getAllFromDB);
@@ -11,6 +13,18 @@ router.post(
   '/',
   validateRequest(AcademicDepartmentValidation.create),
   AcademicDepartmentController.insertIntoDB
+);
+router.patch(
+  '/:id',
+  validateRequest(AcademicDepartmentValidation.update),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  AcademicDepartmentController.updateOneInDB
+);
+
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  AcademicDepartmentController.deleteByIdFromDB
 );
 
 export const AcademicDepartmentRouter = router;
