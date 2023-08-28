@@ -15,12 +15,17 @@ router.post(
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.insertIntoDB
 );
-router.patch('/:id', SemesterRegistrationController.updateOneInDB);
+router.patch(
+  '/:id',
+  validateRequest(SemesterRegistrationValidation.update),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  SemesterRegistrationController.updateOneInDB
+);
 
 router.delete(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  SemesterRegistrationController.deleteByIdFromDB
+  SemesterRegistrationController.deleteByIdFromDB,
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN)
 );
 
 export const semesterRegistrationRoutes = router;
