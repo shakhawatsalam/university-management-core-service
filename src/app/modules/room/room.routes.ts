@@ -17,7 +17,7 @@ router.post(
 router.patch(
   '/:id',
   validateRequest(RoomValidation.update),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   RoomController.updateOneInDB
 );
 

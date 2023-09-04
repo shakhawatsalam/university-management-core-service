@@ -15,7 +15,7 @@ const create = z.object({
     minCredit: z.number({
       required_error: 'Min credit is required',
     }),
-    maxCredit: z.number({
+    maxCredits: z.number({
       required_error: 'Max credit is required',
     }),
   }),

@@ -1,4 +1,5 @@
-import { OffredCourseSection, Prisma } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { OfferedCourseSection, Prisma } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
@@ -12,17 +13,17 @@ import {
 import { offeredCourseSectionRelationalFieldsMapper } from './offredCourseSection.constants';
 import { IOfferedCourseSectionFilterRequest } from './offredCourseSection.interface';
 
-const insertIntoDB = async (data: any): Promise<OffredCourseSection> => {
-  const isExistOffredCourse = await prisma.offredCourse.findFirst({
+const insertIntoDB = async (data: any): Promise<OfferedCourseSection> => {
+  const isExistofferedCourse = await prisma.offeredCourse.findFirst({
     where: {
-      id: data.offredCourseId,
+      id: data.offeredCourseId,
     },
   });
-  if (!isExistOffredCourse) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Offred Course Does Not Exist');
+  if (!isExistofferedCourse) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'offered Course Does Not Exist');
   }
-  data.semesterRegistrationId = isExistOffredCourse.semesterRegistrationId;
-  const result = await prisma.offredCourseSection.create({
+  data.semesterRegistrationId = isExistofferedCourse.semesterRegistrationId;
+  const result = await prisma.offeredCourseSection.create({
     data,
   });
 
@@ -32,7 +33,7 @@ const insertIntoDB = async (data: any): Promise<OffredCourseSection> => {
 const getAllFromDB = async (
   filters: IOfferedCourseSectionFilterRequest,
   options: IPaginationOptions
-): Promise<IGenericResponse<OffredCourseSection[]>> => {
+): Promise<IGenericResponse<OfferedCourseSection[]>> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { searchTerm, ...filterData } = filters;
   const andConditions = [];
@@ -67,9 +68,9 @@ const getAllFromDB = async (
     });
   }
 
-  const whereCondition: Prisma.OffredCourseSectionWhereInput =
+  const whereCondition: Prisma.OfferedCourseSectionWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
-  const result = await prisma.offredCourseSection.findMany({
+  const result = await prisma.offeredCourseSection.findMany({
     where: whereCondition,
     skip,
     take: limit,
@@ -80,7 +81,7 @@ const getAllFromDB = async (
             createdAt: 'desc',
           },
     include: {
-      offredCourse: {
+      offeredCourse: {
         include: {
           course: true,
         },
@@ -88,7 +89,7 @@ const getAllFromDB = async (
     },
   });
 
-  const total = await prisma.offredCourseSection.count({
+  const total = await prisma.offeredCourseSection.count({
     where: whereCondition,
   });
 
@@ -104,14 +105,14 @@ const getAllFromDB = async (
 
 const getByIdFromDB = async (
   id: string
-): Promise<OffredCourseSection | null> => {
-  // OffredCourseSection
-  const result = await prisma.offredCourseSection.findUnique({
+): Promise<OfferedCourseSection | null> => {
+  // offeredCourseSection
+  const result = await prisma.offeredCourseSection.findUnique({
     where: {
       id,
     },
     include: {
-      offredCourse: {
+      offeredCourse: {
         include: {
           course: true,
         },
@@ -123,16 +124,16 @@ const getByIdFromDB = async (
 
 const updateOneInDB = async (
   id: string,
-  payload: Partial<OffredCourseSection>
-): Promise<OffredCourseSection> => {
+  payload: Partial<OfferedCourseSection>
+): Promise<OfferedCourseSection> => {
   //update
-  const result = await prisma.offredCourseSection.update({
+  const result = await prisma.offeredCourseSection.update({
     where: {
       id,
     },
     data: payload,
     include: {
-      offredCourse: {
+      offeredCourse: {
         include: {
           course: true,
         },
@@ -142,13 +143,13 @@ const updateOneInDB = async (
   return result;
 };
 
-const deleteByIdFromDB = async (id: string): Promise<OffredCourseSection> => {
-  const result = await prisma.offredCourseSection.delete({
+const deleteByIdFromDB = async (id: string): Promise<OfferedCourseSection> => {
+  const result = await prisma.offeredCourseSection.delete({
     where: {
       id,
     },
     include: {
-      offredCourse: {
+      offeredCourse: {
         include: {
           course: true,
         },
@@ -158,7 +159,7 @@ const deleteByIdFromDB = async (id: string): Promise<OffredCourseSection> => {
   return result;
 };
 
-export const OffredCourseSectionService = {
+export const offeredCourseSectionService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,

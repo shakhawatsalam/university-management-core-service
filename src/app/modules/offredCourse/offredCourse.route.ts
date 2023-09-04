@@ -2,27 +2,27 @@ import express from 'express';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
 import validateRequest from '../../middlewares/validateRequest';
-import { offredCourseController } from './offredCourse.controller';
-import { offredCourseValidation } from './offredCourse.validation';
+import { offeredCourseController } from './offredCourse.controller';
+import { offeredCourseValidation } from './offredCourse.validation';
 
 const router = express.Router();
 
-router.get('/', offredCourseController.getAllFromDB);
-router.get('/:id', offredCourseController.getByIdFromDB);
+router.get('/', offeredCourseController.getAllFromDB);
+router.get('/:id', offeredCourseController.getByIdFromDB);
 
 router.post(
   '/',
-  validateRequest(offredCourseValidation.create),
+  validateRequest(offeredCourseValidation.create),
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  offredCourseController.insertIntoDB
+  offeredCourseController.insertIntoDB
 );
 
 router.patch(
   '/:id',
-  validateRequest(offredCourseValidation.update),
+  validateRequest(offeredCourseValidation.update),
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN)
 );
 
 router.delete('/:id', auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN));
 
-export const offredCourseRoutes = router;
+export const offeredCourseRoutes = router;

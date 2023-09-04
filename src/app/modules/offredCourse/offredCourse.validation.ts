@@ -27,7 +27,7 @@ const update = z.object({
   }),
 });
 
-export const offredCourseValidation = {
+export const offeredCourseValidation = {
   create,
   update,
 };

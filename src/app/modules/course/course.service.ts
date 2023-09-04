@@ -145,12 +145,20 @@ const getByIdFromDB = async (id: string): Promise<Course | null> => {
     include: {
       preRequisite: {
         include: {
-          preRequisite: true,
+          preRequisite: {
+            select: {
+              title: true,
+            },
+          },
         },
       },
       preRequisiteFor: {
         include: {
-          preRequisite: true,
+          course: {
+            select: {
+              title: true,
+            },
+          },
         },
       },
     },
