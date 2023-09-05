@@ -184,6 +184,16 @@
             "date": 1693894052497,
             "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-05-09-12-error.log",
             "hash": "74fe328105fd16c775b1c80cbd234e86122ff8319733e4af5246d3d7732e989c"
+        },
+        {
+            "date": 1693914979696,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-05-09-17-error.log",
+            "hash": "4b3bc603a1f55606fdab819a88bf37a6f49d6dbe98a4e2acf6776c0e14611f47"
+        },
+        {
+            "date": 1693919250480,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-05-09-19-error.log",
+            "hash": "d3b3302bd86ab74dd17e530a4a738318f85190db14efb253da926d85e1c2a139"
         }
     ],
     "hashType": "sha256"
