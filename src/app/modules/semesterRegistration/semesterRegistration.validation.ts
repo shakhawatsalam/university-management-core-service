@@ -37,7 +37,19 @@ const update = z.object({
   }),
 });
 
+const enrollOrWithdawCourse = z.object({
+  body: z.object({
+    offeredCourseId: z.string({
+      required_error: 'Offered Course Id is Required',
+    }),
+    offeredCourseSectionId: z.string({
+      required_error: 'Offered Course Section Id is Required',
+    }),
+  }),
+});
+
 export const SemesterRegistrationValidation = {
   create,
   update,
+  enrollOrWithdawCourse,
 };

@@ -34,4 +34,17 @@ router.delete(
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN)
 );
 
+router.post(
+  '/enroll-into-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdawCourse),
+  SemesterRegistrationController.enrollIntoCourse
+);
+router.post(
+  '/whitdraw-from-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdawCourse),
+  SemesterRegistrationController.withdrawFromCourse
+);
+
 export const semesterRegistrationRoutes = router;

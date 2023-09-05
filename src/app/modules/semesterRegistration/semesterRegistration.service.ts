@@ -12,12 +12,16 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { studentSemesterRegistrationCourseService } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.service';
 import {
   semesterRegistrationRelationalFields,
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
-import { ISemesterRegistrationFilterRequest } from './semesterRegistration.interface';
+import {
+  IEnrollCoursePayload,
+  ISemesterRegistrationFilterRequest,
+} from './semesterRegistration.interface';
 
 const insertIntoDB = async (
   data: SemesterRegistration
@@ -200,7 +204,6 @@ const startMyRegistration = async (
   semesterRegistration: SemesterRegistration | null;
   studentSemesterRegistration: StudentSemesterRegistration | null;
 }> => {
-  console.log(authUserId);
   const StudentInfo = await prisma.student.findFirst({
     where: {
       studentId: authUserId,
@@ -260,6 +263,29 @@ const startMyRegistration = async (
     studentSemesterRegistration: studentRegistration,
   };
 };
+
+const enrollIntoCourse = async (
+  authUserId: string,
+  payload: IEnrollCoursePayload
+): Promise<{
+  message: string;
+}> => {
+  return studentSemesterRegistrationCourseService.enrollIntoCourse(
+    authUserId,
+    payload
+  );
+};
+const withdrawFromCourse = async (
+  authUserId: string,
+  payload: IEnrollCoursePayload
+): Promise<{
+  message: string;
+}> => {
+  return studentSemesterRegistrationCourseService.withdrawFromCourse(
+    authUserId,
+    payload
+  );
+};
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
@@ -267,4 +293,6 @@ export const SemesterRegistrationService = {
   deleteByIdFromDB,
   updateOneInDB,
   startMyRegistration,
+  enrollIntoCourse,
+  withdrawFromCourse,
 };
