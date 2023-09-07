@@ -1,0 +1,25 @@
+Wed Sep 06 2023 11:7:48 } [PH] error: 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Transaction API error: Transaction already closed: A query cannot be executed on a committed transaction.
+Wed Sep 06 2023 11:9:31 } [PH] error: 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Transaction API error: Transaction already closed: A query cannot be executed on a committed transaction.
+Wed Sep 06 2023 11:11:44 } [PH] error: 
+Invalid `prisma.studentSemesterRegistrationCourse.findMany()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
+Wed Sep 06 2023 11:13:29 } [PH] error: 
+Invalid `prisma.studentSemesterRegistrationCourse.findMany()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
+Wed Sep 06 2023 11:14:32 } [PH] error: 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Transaction API error: Transaction already closed: A query cannot be executed on a committed transaction.
