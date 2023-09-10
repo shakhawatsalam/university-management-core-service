@@ -29,7 +29,7 @@ router.post(
 router.patch(
   '/:id',
   validateRequest(SemesterRegistrationValidation.update),
-  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.updateOneInDB
 );
 
@@ -58,7 +58,7 @@ router.post(
 );
 router.post(
   '/:id/start-new-semester',
-  // auth(ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.startNewSemester
 );
 

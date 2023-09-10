@@ -40,11 +40,15 @@ const enrollIntoCourse = async (
   if (!student) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student Not Found');
   }
+
   if (!semesterRegistration) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Semester Registration Not Found');
   }
   if (!offeredCourse) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Semester Registration Not Found');
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      'Offered Course Registration Not Found'
+    );
   }
   if (!offeredCourseSection) {
     throw new ApiError(

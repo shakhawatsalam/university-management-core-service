@@ -13,7 +13,7 @@ router.get('/:id', offeredCourseController.getByIdFromDB);
 router.post(
   '/',
   validateRequest(offeredCourseValidation.create),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   offeredCourseController.insertIntoDB
 );
 

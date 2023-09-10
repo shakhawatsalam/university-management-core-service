@@ -82,6 +82,7 @@ model Student {
   studentEnrolledCourses             StudentEnrolledCourse[]
   studentEnrolledCourseMarks         StudentEnrolledCourseMark[]
   studentSemesterPayments            StudentSemesterPayment[]
+  studentAcademicInfos               StudentAcademicInfo[]
 
   @@map("students")
 }
@@ -128,8 +129,8 @@ model Room {
   floor                       String
   createdAt                   DateTime                     @default(now())
   updatedAt                   DateTime                     @updatedAt
-  building                    Building                     @relation(fields: [buildingId], references: [id])
   buildingId                  String
+  building                    Building                     @relation(fields: [buildingId], references: [id])
   offeredCourseClassSchedules OfferedCourseClassSchedule[]
 
   @@map("rooms")
@@ -292,6 +293,7 @@ model StudentEnrolledCourse {
   createdAt                  DateTime                     @default(now())
   updatedAt                  DateTime                     @updatedAt
   studentEnrolledCourseMarks StudentEnrolledCourseMark[]
+
   @@map("student_enrolled_course")
 }
 
@@ -327,6 +329,18 @@ model StudentSemesterPayment {
   paymentStatus        PaymentStatus?   @default(PENDING)
 
   @@map("student_semester_payments")
+}
+
+model StudentAcademicInfo {
+  id                   String   @id @default(uuid())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  studentId            String
+  student              Student  @relation(fields: [studentId], references: [id])
+  totalCompletedCredit Int?
+  cgpa                 Float?   @default(0)
+
+  @@map("student_academic_infos")
 }
 
 enum WeekDays {

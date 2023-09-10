@@ -6,27 +6,104 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { asyncForEach } from '../../../shared/utils';
 import {
   offeredCourseRelationalFields,
   offeredCourseSearchableFields,
 } from '../offredCourse/offredCourse.constants';
+import { OfferedCourseClassScheduleUtils } from '../offredCourseClassSchedule/offeredCourseClassSchedule.utils';
 import { offeredCourseSectionRelationalFieldsMapper } from './offredCourseSection.constants';
-import { IOfferedCourseSectionFilterRequest } from './offredCourseSection.interface';
+import {
+  IClassSchedule,
+  IOfferedCourseSectionCreate,
+  IOfferedCourseSectionFilterRequest,
+} from './offredCourseSection.interface';
 
-const insertIntoDB = async (data: any): Promise<OfferedCourseSection> => {
+const insertIntoDB = async (
+  payload: IOfferedCourseSectionCreate
+): Promise<OfferedCourseSection | null> => {
+  const { classSchedules, ...data } = payload;
   const isExistofferedCourse = await prisma.offeredCourse.findFirst({
     where: {
       id: data.offeredCourseId,
     },
   });
+
   if (!isExistofferedCourse) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'offered Course Does Not Exist');
   }
-  data.semesterRegistrationId = isExistofferedCourse.semesterRegistrationId;
-  const result = await prisma.offeredCourseSection.create({
-    data,
+
+  await asyncForEach(classSchedules, async (schedule: any) => {
+    await OfferedCourseClassScheduleUtils.checkRoomAvailable(schedule);
+    await OfferedCourseClassScheduleUtils.checkFacultyAvailable(schedule);
   });
 
+  const OfferedCourseSectionData = await prisma.offeredCourseSection.findFirst({
+    where: {
+      offeredCourse: {
+        id: data.offeredCourseId,
+      },
+      title: data.title,
+    },
+  });
+
+  if (OfferedCourseSectionData) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Course Section is Already Exist'
+    );
+  }
+
+  const createSection = await prisma.$transaction(async transactionClient => {
+    const createOfferedCourseSection =
+      await transactionClient.offeredCourseSection.create({
+        data: {
+          title: data.title,
+          maxCapacity: data.maxCapacity,
+          offeredCourseId: data.offeredCourseId,
+          semesterRegistrationId: isExistofferedCourse.semesterRegistrationId,
+        },
+      });
+
+    const scheduleData = classSchedules.map((schedule: IClassSchedule) => ({
+      startTime: schedule.startTime,
+      endTime: schedule.endTime,
+      dayOfWeek: schedule.dayOfWeek,
+      roomId: schedule.roomId,
+      facultyId: schedule.facultyId,
+      offeredCourseSectionId: createOfferedCourseSection.id,
+      semesterRegistrationId: isExistofferedCourse.semesterRegistrationId,
+    }));
+    console.log(scheduleData);
+
+    await transactionClient.offeredCourseClassSchedule.createMany({
+      data: scheduleData,
+    });
+
+    return createOfferedCourseSection;
+  });
+  const result = await prisma.offeredCourseSection.findFirst({
+    where: {
+      id: createSection.id,
+    },
+    include: {
+      offeredCourse: {
+        include: {
+          course: true,
+        },
+      },
+      offeredCourseClassSchedules: {
+        include: {
+          room: {
+            include: {
+              building: true,
+            },
+          },
+          faculty: true,
+        },
+      },
+    },
+  });
   return result;
 };
 

@@ -45,7 +45,6 @@ const checkFacultyAvailable = async (data: OfferedCourseClassSchedule) => {
       },
     });
 
-  console.log(alreadyFacultyAssigned);
   // from data base
   const existingSlots = alreadyFacultyAssigned.map(schedule => ({
     startTime: schedule.startTime,
