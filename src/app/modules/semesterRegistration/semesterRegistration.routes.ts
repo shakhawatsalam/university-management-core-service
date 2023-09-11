@@ -13,6 +13,11 @@ router.get(
   SemesterRegistrationController.getMyRegistration
 );
 router.get('/', SemesterRegistrationController.getAllFromDB);
+router.get(
+  '/get-my-semester-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMyRegistrationCourses
+);
 router.get('/:id', SemesterRegistrationController.getByIdFromDB);
 
 router.post(
@@ -23,7 +28,7 @@ router.post(
 router.post(
   '/',
   validateRequest(SemesterRegistrationValidation.create),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.insertIntoDB
 );
 router.patch(

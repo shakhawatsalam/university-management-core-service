@@ -6,31 +6,6 @@
     "auditLog": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\.d87f80f4ad97f45197e8422492b05e010a67b45e-audit.json",
     "files": [
         {
-            "date": 1693190991097,
-            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-08-error.log",
-            "hash": "d2c8227a083c18a2370d1c5c114a18b4b6f552f4c5ab17cca28140251e096c5d"
-        },
-        {
-            "date": 1693191601928,
-            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-09-error.log",
-            "hash": "6b965db381bb48e937e7806fcf2da87ce81360ccfbc0f717a34d9cd6a97f2be1"
-        },
-        {
-            "date": 1693196385252,
-            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-10-error.log",
-            "hash": "8cbe946a692a15a6cb84529053e1ab2074c1e558879fe5c5c9051d95b28b9541"
-        },
-        {
-            "date": 1693200172539,
-            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-11-error.log",
-            "hash": "6b51587dc4fc49987aeb817a8c08a3dbcc14aa2feb1b4d937970fc556b715bee"
-        },
-        {
-            "date": 1693204558106,
-            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-12-error.log",
-            "hash": "269b9e34f9e5b92b399f2987f7d9556b89ae3c9e0ffa28f8a236bb8e3b115936"
-        },
-        {
             "date": 1693238681686,
             "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-28-08-22-error.log",
             "hash": "aebc735882027623415ccb8700e49d6535e91e807acede3e1a81dd2117de848b"
@@ -289,6 +264,51 @@
             "date": 1694336667942,
             "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-10-09-15-error.log",
             "hash": "80bd9fe035fb9ae0537194a693777d35a07c64dd524150f814e62530e5e7e885"
+        },
+        {
+            "date": 1694346516102,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-10-09-17-error.log",
+            "hash": "7bf3281b6ed6214d7260a935da0590949135f1b9267537043b4d5ed78c68c851"
+        },
+        {
+            "date": 1694347210100,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-10-09-18-error.log",
+            "hash": "19fea3525add66f0c7351099086d685f767496185495970eff90159f5f8b163e"
+        },
+        {
+            "date": 1694350875755,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-10-09-19-error.log",
+            "hash": "818364c213bacf07b93105ff1793b8119bb83dd646c4083b5590dbe9799b8ae3"
+        },
+        {
+            "date": 1694354400975,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-10-09-20-error.log",
+            "hash": "10d28fb48071f3c1dd6e82d0c5474f0c7cc505be4246f5bd20d5e7afab98dec8"
+        },
+        {
+            "date": 1694405671640,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-11-09-10-error.log",
+            "hash": "8e354858c4354ce35a7ae4e49206de7c0b24f6612db442ef0f5391d0836f32e1"
+        },
+        {
+            "date": 1694409567591,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-11-09-11-error.log",
+            "hash": "3df5ccc6ba2cdab176977062cdd1ec1a41b4e01b8eb7b09de70c55365ec8b8d4"
+        },
+        {
+            "date": 1694412125569,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-11-09-12-error.log",
+            "hash": "8f0f359cd3d938e24ae7c01ca286615594494d75c0880d88d64cba0559fec0c9"
+        },
+        {
+            "date": 1694415673901,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-11-09-13-error.log",
+            "hash": "67201fc9904a4cdf919b48ddd3bde6a7da8a34c71bde49f73a2707ad7bddf5f1"
+        },
+        {
+            "date": 1694419203849,
+            "name": "E:\\Web Development Course\\Next Level Web DEV\\University-Management\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2023-11-09-14-error.log",
+            "hash": "05888a58cbc14d1c35f8e9085d20abe025f326daae637824caf10c3e15bbc541"
         }
     ],
     "hashType": "sha256"
