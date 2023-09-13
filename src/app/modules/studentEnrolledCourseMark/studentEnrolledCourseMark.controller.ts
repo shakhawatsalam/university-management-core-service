@@ -43,9 +43,26 @@ const updateFinalMarks = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getMyCourseMarks = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, studentEnrolledCourseMarkFilterableFields);
+  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+  const user = req.user;
+  const result = await studentEnrolledCourseMarkService.getMyCourseMarks(
+    filters,
+    options,
+    user
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Final Marks Updated',
+    data: result,
+  });
+});
 
 export const StudentEnrolledCourseMarksController = {
   updateStudentMark,
   getAllFromDB,
   updateFinalMarks,
+  getMyCourseMarks,
 };
