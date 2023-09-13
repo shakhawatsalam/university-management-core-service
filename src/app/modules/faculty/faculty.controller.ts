@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
@@ -75,6 +76,28 @@ const myCourses = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMyCourseStudent = catchAsync(async (req: Request, res: Response) => {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+  const user = (req as any).user;
+  const filters = pick(req.query, [
+    'academicSemesterId',
+    'courseId',
+    'offeredCourseSectionId',
+  ]);
+  const options = pick(req.query, ['limit', 'page']);
+  const result = await FacultyService.getMyCourseStudent(
+    filters,
+    options
+    // user
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Faculty course students fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
 export const FacultyController = {
   insertIntoDB,
   getAllFromDB,
@@ -82,4 +105,5 @@ export const FacultyController = {
   assignCourses,
   removeCourses,
   myCourses,
+  getMyCourseStudent,
 };
