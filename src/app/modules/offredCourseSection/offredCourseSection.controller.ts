@@ -3,12 +3,11 @@ import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { offeredCourseSectionService } from './offredCourseSection.service';
 import { offeredCourseSectionFilterableFields } from './offredCourseSection.constants';
+import { offeredCourseSectionService } from './offredCourseSection.service';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await offeredCourseSectionService.insertIntoDB(req.body);
-
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

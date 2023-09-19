@@ -61,7 +61,7 @@ const insertIntoDB = async (
           title: data.title,
           maxCapacity: data.maxCapacity,
           offeredCourseId: data.offeredCourseId,
-          semesterRegistrationId: isExistofferedCourse.semesterRegistrationId,
+          semesterRegistrationId: isExistofferedCourse?.semesterRegistrationId,
         },
       });
 
@@ -74,7 +74,6 @@ const insertIntoDB = async (
       offeredCourseSectionId: createOfferedCourseSection.id,
       semesterRegistrationId: isExistofferedCourse.semesterRegistrationId,
     }));
-    console.log(scheduleData);
 
     await transactionClient.offeredCourseClassSchedule.createMany({
       data: scheduleData,

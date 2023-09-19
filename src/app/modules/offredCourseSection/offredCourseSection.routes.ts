@@ -8,7 +8,11 @@ import { OfferedCourseSectionValidation } from './offredCourseSection.validation
 const router = express.Router();
 router.get('/', offeredCourseSectionController.getAllFromDB);
 router.get('/:id', offeredCourseSectionController.getByIdFromDB);
-router.post('/', offeredCourseSectionController.insertIntoDB);
+router.post(
+  '/',
+  validateRequest(OfferedCourseSectionValidation.create),
+  offeredCourseSectionController.insertIntoDB
+);
 
 router.patch(
   '/:id',
