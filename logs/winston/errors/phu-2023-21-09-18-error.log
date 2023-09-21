@@ -1,0 +1,50 @@
+Thu Sep 21 2023 18:35:54 } [PH] error: 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    faculyId: "F-00004",
+    lastName: undefined,
+    middlename: undefined,
+    email: "Sumit.smith@example.com",
+    contactNO: "76543210",
+    gender: "female",
+    bloodGorup: "B+",
+    designation: "Assistant Professor",
+    academicDepartmentId: "a67ae4fd-d8db-4bbd-afa2-24cc2047e09d",
+    academicFacultyId: "15de6716-15af-41fc-a34c-2eec43331e97",
+    profileImage: "https://res.cloudinary.com/dhzigchqs/image/upload/v1695299752/shboeioih9ld0dahjzrb.jpg",
++   firstName: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `firstName` is missing.
+Thu Sep 21 2023 18:45:4 } [PH] error: 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    faculyId: "F-00004",
+    lastName: undefined,
+    middlename: undefined,
+    email: "Sumit.smith@example.com",
+    contactNO: "76543210",
+    gender: "female",
+    bloodGorup: "B+",
+    designation: "Assistant Professor",
+    academicDepartmentId: "a67ae4fd-d8db-4bbd-afa2-24cc2047e09d",
+    academicFacultyId: "15de6716-15af-41fc-a34c-2eec43331e97",
+    profileImage: "https://res.cloudinary.com/dhzigchqs/image/upload/v1695300301/s6llnoafuzhmaere2pdq.jpg",
++   firstName: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `firstName` is missing.

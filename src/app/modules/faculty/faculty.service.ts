@@ -314,6 +314,27 @@ const getMyCourseStudent = async (
   };
 };
 
+// ** Creating Faculty Event
+const createFacultyFromEvent = async (e: any) => {
+  console.log(e);
+  const facultyData: Partial<Faculty> = {
+    faculyId: e.id,
+    firstName: e.name.firstName,
+    lastName: e.name.lastName,
+    middlename: e.name.middleName,
+    email: e.email,
+    contactNO: e.contactNo,
+    gender: e.gender,
+    bloodGorup: e.bloodGroup,
+    designation: e.designation,
+    academicDepartmentId: e.academicDepartment.syncId,
+    academicFacultyId: e.academicFaculty.syncId,
+    profileImage: e.profileImage,
+  };
+
+  await insertIntoDB(facultyData as Faculty);
+};
+
 export const FacultyService = {
   insertIntoDB,
   getAllFromDB,
@@ -322,4 +343,5 @@ export const FacultyService = {
   removeCourse,
   myCourses,
   getMyCourseStudent,
+  createFacultyFromEvent,
 };
