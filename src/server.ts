@@ -1,11 +1,14 @@
 import { Server } from 'http';
 import app from './app';
+import subscribeToEvent from './app/events';
 import config from './config';
 import { errorlogger, logger } from './shared/logger';
 import { RedisClient } from './shared/redis';
 
 async function bootstrap() {
-  RedisClient.connect();
+  RedisClient.connect().then(() => {
+    subscribeToEvent();
+  });
   const server: Server = app.listen(config.port, () => {
     logger.info(`Server running on port ${config.port}`);
   });

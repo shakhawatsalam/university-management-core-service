@@ -217,6 +217,7 @@ const startMyRegistration = async (
       studentId: authUserId,
     },
   });
+
   if (!StudentInfo) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Student Info not found');
   }
@@ -231,12 +232,13 @@ const startMyRegistration = async (
       },
     },
   });
+  console.log(semesterRegistrationInfo);
   if (
     semesterRegistrationInfo?.status === SemesterRegistrationStatus.UPCOMING
   ) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      'Registration is not Started yet'
+      'Registration is not Started yet Not Ongoing'
     );
   }
   let studentRegistration = await prisma.studentSemesterRegistration.findFirst({
@@ -714,7 +716,7 @@ const getMyRegistrationCourses = async (authUserId: string) => {
       course: true,
     },
   });
-  // console.log(studentCompletedCourse);
+  console.log(studentCompletedCourse);
 
   const studentCurrentSemesterTakenCourse =
     await prisma.studentSemesterRegistrationCourse.findMany({
