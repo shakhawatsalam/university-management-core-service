@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CourseFaculty, Faculty, Prisma, Student } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -315,8 +317,7 @@ const getMyCourseStudent = async (
 };
 
 // ** Creating Faculty Event
-const createFacultyFromEvent = async (e: any) => {
-  console.log(e);
+const createFacultyFromEvent = async (e: any): Promise<void> => {
   const facultyData: Partial<Faculty> = {
     faculyId: e.id,
     firstName: e.name.firstName,
@@ -334,7 +335,38 @@ const createFacultyFromEvent = async (e: any) => {
 
   await insertIntoDB(facultyData as Faculty);
 };
-
+const updateFacultyFromEvent = async (e: any): Promise<void> => {
+  const isExist = await prisma.faculty.findFirst({
+    where: {
+      faculyId: e.id,
+    },
+  });
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User Not Found');
+  } else {
+    const facultyData: Partial<Faculty> = {
+      faculyId: e.id,
+      firstName: e.name.firstName,
+      lastName: e.name.lastName,
+      middlename: e.name.middleName,
+      email: e.email,
+      contactNO: e.contactNo,
+      gender: e.gender,
+      bloodGorup: e.bloodGroup,
+      designation: e.designation,
+      academicDepartmentId: e.academicDepartment.syncId,
+      academicFacultyId: e.academicFaculty.syncId,
+      profileImage: e.profileImage,
+    };
+    const res = await prisma.faculty.updateMany({
+      where: {
+        faculyId: e.id,
+      },
+      data: facultyData,
+    });
+    console.log('hello world', res);
+  }
+};
 export const FacultyService = {
   insertIntoDB,
   getAllFromDB,
@@ -344,4 +376,5 @@ export const FacultyService = {
   myCourses,
   getMyCourseStudent,
   createFacultyFromEvent,
+  updateFacultyFromEvent,
 };
